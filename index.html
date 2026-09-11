@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="Portal Aplikasi Sekolah">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="asset/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <title>Portal Aplikasi Sekolah</title>
+</head>
+
+<body>
+  <!-- ================= LOGIN ================= -->
+  <section id="loginScreen" class="login-screen">
+    <div class="login-glow login-glow-one"></div>
+    <div class="login-glow login-glow-two"></div>
+
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="school-logo-wrap">
+          <img src="asset/logo-sekolah.png" alt="Logo SD Negeri Menteng Atas 05" class="school-logo">
+        </div>
+
+        <div class="login-title">
+          <span class="eyebrow">SISTEM INFORMASI SEKOLAH</span>
+          <h1>Portal Aplikasi</h1>
+          <p>SD Negeri Menteng Atas 05</p>
+        </div>
+      </div>
+
+      <div class="login-heading">
+        <h2>Selamat Datang 👋</h2>
+        <p>Silakan masuk untuk mengakses aplikasi sekolah.</p>
+      </div>
+
+      <form id="loginForm" autocomplete="on">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input id="username" name="username" type="text"
+                   placeholder="Masukkan username" autocomplete="username" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input id="password" name="password" type="password"
+                   placeholder="Masukkan password" autocomplete="current-password" required>
+            <button type="button" id="togglePassword" class="input-action" aria-label="Tampilkan password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <label class="remember-row">
+          <input id="rememberMe" type="checkbox">
+          <span>Ingat saya</span>
+        </label>
+
+        <button id="loginButton" class="login-button" type="submit">
+          <span class="button-label">Masuk ke Portal</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <div class="login-security">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Akses portal terlindungi</span>
+      </div>
+
+      <div class="login-footer">
+        <span>Portal Aplikasi Sekolah</span>
+        <span>•</span>
+        <span>v2.0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= APPLICATION ================= -->
+  <div id="applicationScreen" class="application-screen hidden">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#" class="brand" onclick="return false;">
+          <img src="asset/logo.png" alt="Portal Aplikasi Sekolah" class="portal-logo">
+          <div class="brand-text">
+            <strong>PORTAL APLIKASI</strong>
+            <span>SEKOLAH</span>
+          </div>
+        </a>
+
+        <div class="header-actions">
+          <button id="themeToggle" class="icon-button" type="button" title="Gunakan mode gelap">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+
+          <div class="user-menu-wrap">
+            <button id="userMenuButton" class="user-menu-button" type="button">
+              <span id="userAvatar" class="user-avatar">A</span>
+              <span class="user-meta">
+                <strong id="headerUserName">Administrator</strong>
+                <small id="headerUserRole">Admin</small>
+              </span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div id="userMenu" class="user-menu hidden">
+              <div class="user-menu-header">
+                <span id="menuUserName">Administrator</span>
+                <small id="menuUserRole">Admin</small>
+              </div>
+              <button type="button" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Keluar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-badge"><span></span> Pusat Aplikasi Sekolah</div>
+          <h1>Selamat Datang <span>👋</span></h1>
+          <p>Akses seluruh aplikasi sekolah dengan mudah, cepat, dan terorganisasi dalam satu portal.</p>
+
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="searchInput" type="search" placeholder="Cari aplikasi..." autocomplete="off">
+            <button id="clearSearch" type="button" aria-label="Hapus pencarian">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <kbd>Ctrl K</kbd>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon blue"><i class="fa-solid fa-layer-group"></i></div>
+              <div><small>Total Aplikasi</small><strong id="totalApps">0</strong></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+              <div><small>Aplikasi Aktif</small><strong id="activeApps">0</strong></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orange"><i class="fa-solid fa-star"></i></div>
+              <div><small>Aplikasi Unggulan</small><strong id="featuredApps">0</strong></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple"><i class="fa-solid fa-shapes"></i></div>
+              <div><small>Kategori</small><strong id="totalCategories">0</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker"><i class="fa-solid fa-filter"></i> Jelajahi</span>
+              <h2>Kategori Aplikasi</h2>
+            </div>
+          </div>
+          <div id="categoryContainer" class="category-container"></div>
+
+          <section id="featuredSection" class="app-section">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker"><i class="fa-solid fa-star"></i> Pilihan</span>
+                <h2>Aplikasi Unggulan</h2>
+              </div>
+              <span id="featuredCount" class="result-count">0 aplikasi</span>
+            </div>
+            <div id="featuredAppsContainer" class="apps-grid"></div>
+          </section>
+
+          <section class="app-section">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker"><i class="fa-solid fa-grid-2"></i> Koleksi</span>
+                <h2 id="applicationSectionTitle">Semua Aplikasi</h2>
+              </div>
+              <span id="allAppsCount" class="result-count">0 aplikasi</span>
+            </div>
+
+            <div id="applicationsContainer" class="apps-grid"></div>
+
+            <div id="emptyState" class="empty-state" hidden>
+              <div><i class="fa-solid fa-magnifying-glass"></i></div>
+              <h3>Aplikasi tidak ditemukan</h3>
+              <p>Coba gunakan kata kunci lain atau reset filter.</p>
+              <button type="button" class="secondary-button" onclick="resetFilters()">Reset Filter</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Portal Aplikasi Sekolah</strong>
+          <span>SD Negeri Menteng Atas 05</span>
+        </div>
+        <span>© <span id="currentYear"></span> Sistem Informasi Sekolah</span>
+      </div>
+    </footer>
+
+    <button id="backToTop" class="back-top" type="button" onclick="scrollToTop()" aria-label="Kembali ke atas">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      <div class="toast-icon"><i class="fa-solid fa-circle-info"></i></div>
+      <div><strong id="toastTitle">Informasi</strong><p id="toastMessage"></p></div>
+      <button type="button" onclick="hideToast()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

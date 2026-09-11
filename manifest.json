@@ -1,0 +1,28 @@
+{
+  "name": "Portal Aplikasi Sekolah",
+  "short_name": "Portal Sekolah",
+  "description": "Portal pusat akses aplikasi SD Negeri Menteng Atas 05",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#2563eb",
+  "lang": "id-ID",
+  "icons": [
+    {
+      "src": "asset/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "asset/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "asset/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
